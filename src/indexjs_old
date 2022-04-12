@@ -1,0 +1,40 @@
+const express = require('express');
+
+const app = express();
+app.use(express.json()) //middleware para utilizacao de JSON
+
+app.get("/courses", (request, response) => {
+    // return response.send("Hello World!");
+
+    const query = request.query;
+    console.log('query xxx', query)
+
+    return response.json(["Curso 1", "Curso 2, Curso 3"])
+})
+
+app.post("/courses", (request, response) => {
+
+    const body = request.body;
+    console.log('body xxx', body)
+
+    return response.json(["Curso 1", "Curso 2, Curso 3", "Curso 4"])
+})
+
+app.put("/courses/:id", (request, response) => {
+
+    // const params = request.params;
+    const { id } = request.params;
+    console.log(' id xxx', id)
+
+    return response.json(["Curso 6", "Curso 2, Curso 3"])
+})
+
+app.patch("/courses/:id", (request, response) => {
+    return response.json(["Curso 6", "Curso 2, Curso 3"])
+})
+
+app.delete("/courses/:id", (request, response) => {
+    return response.json(["Curso 6", "Curso 2, Curso 3"])
+})
+
+app.listen(3333);
